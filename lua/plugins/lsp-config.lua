@@ -10,7 +10,7 @@ return {
 	  "williamboman/mason-lspconfig.nvim",
 	  event = "VeryLazy",
 	  opts = {
-		ensure_installed = { "clangd", "bashls", "lua_ls", "html", "cssls", "pylsp" },
+		ensure_installed = { "clangd", "bashls", "lua_ls", "html", "cssls", "ruff", "ruff-lsp" },
 		auto_install = true,
 	  },
 	},
