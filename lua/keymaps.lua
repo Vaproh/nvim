@@ -4,6 +4,9 @@ vim.g.mapleader = " "
 -- Save current file
 map("n", "<C-s>", "<cmd>w<cr>", { desc = "Save file", remap = true })
 
+-- ESC pressing jk
+map("i", "jk", "<ESC>", { desc = "jk to esc", noremap = true })
+
 -- Quit Neovim
 map("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit Buffer/Neovim", remap = true })
 
