@@ -10,7 +10,7 @@ return {
 	  "williamboman/mason-lspconfig.nvim",
 	  event = "VeryLazy",
 	  opts = {
-		ensure_installed = { "clangd", "bashls", "lua_ls", "html", "cssls", "ruff" },
+		ensure_installed = { "clangd", "bashls", "lua_ls", "html", "cssls", "ruff", "pylsp", "gopls" },
 		auto_install = true,
 	  },
 	},
@@ -27,7 +27,10 @@ return {
 		lspconfig.pylsp.setup({
 		  capabilities = capabilities,
 		})
-		lspconfig.html.setup({
+        lspconfig.ruff.setup({
+          capabilities = capabilities,
+        })
+        lspconfig.html.setup({
 		  capabilities = capabilities,
 		})
 		lspconfig.cssls.setup({
@@ -39,6 +42,18 @@ return {
 		lspconfig.clangd.setup({
 		  capabilities = capabilities,
 		})
+        lspconfig.gopls.setup({
+          capabilities = capabilities,
+          cmd = {"gopls"},
+          filetypes = { "go", "gomod", "gowork", "gotmpl" },
+          settings = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analysis = {
+              unusedparams = true
+              }
+          }
+        })
   
 		vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 		vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
