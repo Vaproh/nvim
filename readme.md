@@ -38,30 +38,6 @@ Right now, Installation process is only available for linux.
 git clone https://github.com/vaproh/nvim ~/.config/nvim
 ```
 
-- Toggle Comment
-
-```help
-`gcc` - Toggles the current line using linewise comment
-`gbc` - Toggles the current line using blockwise comment
-`[count]gcc` - Toggles the number of line given as a prefix-count using linewise
-`[count]gbc` - Toggles the number of line given as a prefix-count using blockwise
-`gc[count]{motion}` - (Op-pending) Toggles the region using linewise comment
-`gb[count]{motion}` - (Op-pending) Toggles the region using blockwise comment
-```
-
-- Telescope
-
-```help
-
-```
-
-- Usage instructions
-- Support instructions
-- Contributing instructions
-- Licence
-
-Feel free to remove any sections that aren't applicable to your project.
-
 ## Screenshots
 
 ![Screenshot 1](/screenshots/1-screenshot.png)
