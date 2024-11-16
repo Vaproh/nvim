@@ -23,6 +23,7 @@ return {
             a = { fg = colors.bg, bg = colors.fg },
             b = { fg = colors.fg, bg = colors.black4 },
             c = { fg = colors.fg, bg = colors.bg },
+            y = { fg = colors.fg, bg = colors.black4 },
             z = { fg = colors.bg, bg = colors.fg },
           },
           insert = { a = { fg = colors.black, bg = colors.green } },
@@ -91,20 +92,8 @@ return {
             },
             lualine_c = {
               'diff',
-              {
-                'diagnostics',
-                source = { 'nvim' },
-                sections = { 'error' },
-                diagnostics_color = { error = { bg = colors.red, fg = colors.white } },
-              },
-              {
-                'diagnostics',
-                source = { 'nvim' },
-                sections = { 'warn' },
-                diagnostics_color = { warn = { bg = colors.orange, fg = colors.white } },
-              },
               { 'filename', file_status = false, path = 1 },
-              { modified, color = { bg = colors.red } },
+              { modified, color = { fg = colors.fg } },
               {
                 '%w',
                 cond = function()
@@ -124,9 +113,23 @@ return {
                 end,
               },
             },
-            lualine_x = {},
-            lualine_y = { search_result, 'filetype' },
-            lualine_z = { '%l:%c', '%p%%/%L' },
+            lualine_x = { search_result, 'filetype' },
+            lualine_y = {
+              '%l:%c',
+              {
+                'diagnostics',
+                source = { 'nvim' },
+                sections = { 'error' },
+                diagnostics_color = { error = { bg = colors.black4, fg = colors.red } },
+              },
+              {
+                'diagnostics',
+                source = { 'nvim' },
+                sections = { 'warn' },
+                diagnostics_color = { warn = { bg = colors.black4, fg = colors.orange } },
+              },
+            },
+            lualine_z = {'%p%%/%L' },
           },
           inactive_sections = {
             lualine_c = { '%f %y %m' },
