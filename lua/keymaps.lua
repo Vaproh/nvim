@@ -75,3 +75,4 @@ map('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_wor
 
 -- Find-Cmd
 map('n', ':', '<cmd>FineCmdline<CR>', { desc = "Fine-Cmd plugin", noremap = true})
+
