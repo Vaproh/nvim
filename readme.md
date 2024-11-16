@@ -23,8 +23,6 @@ Welcome to my **Neovim** configuration, a comprehensive setup that enhances my c
 
 > **Note**: This config is constantly being updated. So, you can expect removal and addition of features.
 
-Dive into **nvim** to transform your coding environment into a feature-rich, efficient workspace!
-
 ## Table of Contents
 
 - [Installation](#installation)
@@ -46,7 +44,6 @@ git clone https://github.com/vaproh/nvim ~/.config/nvim
 Usage of some features in this Neovim config.
 
 - CodeRunner
-As the name suggests, it runs code in Neovim. Keybinds for this plugin are :-
 
 ```help
 `Space + r` - This keybind runs the code.
@@ -57,7 +54,6 @@ As the name suggests, it runs code in Neovim. Keybinds for this plugin are :-
 ```
 
 - Toggle Comment
-This feature comments the current line or the selected code block.
 
 ```help
 `gcc` - Toggles the current line using linewise comment
@@ -69,7 +65,6 @@ This feature comments the current line or the selected code block.
 ```
 
 - Telescope
-This feature helps to fuzzily find files and stuff across your directory.
 
 ```help
 
@@ -81,6 +76,18 @@ This feature helps to fuzzily find files and stuff across your directory.
 - Licence
 
 Feel free to remove any sections that aren't applicable to your project.
+
+## Screenshots
+
+![Screenshot 1](/screenshots/1-screenshot.png)
+
+![Screenshot 2](/screenshots/2-screenshot.png)
+
+![Screenshot 3](/screenshots/3-screenshot.png)
+
+![Screenshot 4](/screenshots/4-screenshot.png)
+
+![Screenshot 5](/screenshots/5-screenshot.png)
 
 ## Support
 
