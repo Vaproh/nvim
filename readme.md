@@ -26,7 +26,6 @@ Welcome to my **Neovim** configuration, a comprehensive setup that enhances my c
 ## Table of Contents
 
 - [Installation](#installation)
-<!--- [Usage](#usage)-->
 - [Screenshots](#screenshots)
 - [Support](#support)
 - [Contributing](#contributing)
@@ -39,20 +38,6 @@ Right now, Installation process is only available for linux.
 git clone https://github.com/vaproh/nvim ~/.config/nvim
 ```
 
-<!--## Usage-->
-<!---->
-<!--Usage of some features in this Neovim config.-->
-<!---->
-<!--- CodeRunner-->
-<!---->
-<!--```help-->
-<!--`Space + r` - This keybind runs the code.-->
-<!--`Space + rf` - This Keybind runs the current working file.-->
-<!--`Space + rp` - This Keybind runs the project.-->
-<!--`Space + rc` - This Keybind closes the pane.-->
-<!---->
-<!--```-->
-<!---->
 - Toggle Comment
 
 ```help
