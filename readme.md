@@ -2,9 +2,9 @@
 
 Welcome to my Neovim configuration, a comprehensive setup that enhances my coding experience and suits my workflow very well. 🚀
 
----
-
 > **Note**: This is my personal Neovim configuration, and you are free to use it as a starting point. However, I highly recommend creating your own setup to best suit your individual workflow and preferences. 🛠️
+
+---
 
 ## Features ✨
 
@@ -48,9 +48,9 @@ git clone https://github.com/vaproh/nvim ~/.config/nvim
 
 ## Screenshots
 
-![Screenshot 1](/screenshots/1-screenshot.png)
+![Screenshot 1](/screenshots/2-screenshot.png)
 
-![Screenshot 2](/screenshots/2-screenshot.png)
+![Screenshot 2](/screenshots/1-screenshot.png)
 
 ![Screenshot 3](/screenshots/3-screenshot.png)
 
