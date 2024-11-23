@@ -76,3 +76,8 @@ map('n', '<leader>sp', '<cmd>lua require("spectre").open_file_search({select_wor
 -- Find-Cmd
 map('n', ':', '<cmd>FineCmdline<CR>', { desc = "Fine-Cmd plugin", noremap = true})
 
+-- Unbind Arrow keys
+map('n', '<Up>', '<Nop>', { desc = "Remove arrow binds to move only to get used to vim motions", noremap = false })
+map('n', '<Down>', '<Nop>', { desc = "Remove arrow binds to move only to get used to vim motions", noremap = false })
+map('n', '<Right>', '<Nop>', { desc = "Remove arrow binds to move only to get used to vim motions", noremap = false })
+map('n', '<Left>', '<Nop>', { desc = "Remove arrow binds to move only to get used to vim motions", noremap = false })

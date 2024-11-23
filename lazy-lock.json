@@ -38,5 +38,6 @@
   "rustaceanvim": { "branch": "master", "commit": "8ece53be36515cb9e76f3d03511643636469502d" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope.nvim": { "branch": "master", "commit": "d90956833d7c27e73c621a61f20b29fdb7122709" },
-  "tree-sitter-html": { "branch": "master", "commit": "d9219ada6e1a2c8f0ab0304a8bd9ca4285ae0468" }
+  "tree-sitter-html": { "branch": "master", "commit": "d9219ada6e1a2c8f0ab0304a8bd9ca4285ae0468" },
+  "yazi.nvim": { "branch": "main", "commit": "faa03e9acb894533b91c811d0dafd816b995088f" }
 }
