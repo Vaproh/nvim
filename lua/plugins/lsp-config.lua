@@ -1,4 +1,5 @@
 return {
+	-- Mason setup
 	{
 		"williamboman/mason.nvim",
 		cmd = "Mason",
@@ -33,6 +34,8 @@ return {
 			})
 		end,
 	},
+
+	-- Mason LSP config
 	{
 		"williamboman/mason-lspconfig.nvim",
 		event = "VeryLazy",
@@ -53,52 +56,49 @@ return {
 			auto_install = true,
 		},
 	},
+
+	-- LSP setup
 	{
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- LSP setups
-			lspconfig.clangd.setup({ capabilities = capabilities })
-			lspconfig.bashls.setup({ capabilities = capabilities })
-			lspconfig.lua_ls.setup({ capabilities = capabilities })
-			lspconfig.html.setup({ capabilities = capabilities })
-			lspconfig.cssls.setup({ capabilities = capabilities })
-			lspconfig.ts_ls.setup({ capabilities = capabilities })
-			lspconfig.jsonls.setup({ capabilities = capabilities })
-			lspconfig.yamlls.setup({ capabilities = capabilities })
-
-			-- Ruff for diagnostics
-			lspconfig.ruff.setup({
-				capabilities = capabilities,
-				on_attach = function(client)
-					client.server_capabilities.hoverProvider = false
-					client.server_capabilities.definitionProvider = false
-				end,
+			-- Show diagnostics inline (virtual text)
+			vim.diagnostic.config({
+				virtual_text = true,
+				signs = true,
+				underline = true,
+				update_in_insert = false,
+				severity_sort = true,
 			})
 
-			-- Pylsp for formatting/linting
-			lspconfig.pylsp.setup({
-				capabilities = capabilities,
-				settings = {
-					pylsp = {
-						plugins = {
-							autopep8 = { enabled = false },
-							yapf = { enabled = false },
-							black = { enabled = true },
-							pylint = { enabled = true },
-							pyflakes = { enabled = true },
-							pycodestyle = { enabled = true },
-							ruff = { enabled = false },
-						},
-					},
-				},
-			})
+			-- Autoformat on save
+			local on_attach = function(client, bufnr)
+				if client.supports_method("textDocument/formatting") then
+					vim.api.nvim_create_autocmd("BufWritePre", {
+						group = vim.api.nvim_create_augroup("LspFormat", { clear = true }),
+						buffer = bufnr,
+						callback = function()
+							vim.lsp.buf.format({ async = false })
+						end,
+					})
+				end
+			end
 
+			-- Core LSPs
+			lspconfig.clangd.setup({ capabilities = capabilities, on_attach = on_attach })
+			lspconfig.bashls.setup({ capabilities = capabilities, on_attach = on_attach })
+			lspconfig.lua_ls.setup({ capabilities = capabilities, on_attach = on_attach })
+			lspconfig.html.setup({ capabilities = capabilities, on_attach = on_attach })
+			lspconfig.cssls.setup({ capabilities = capabilities, on_attach = on_attach })
+			lspconfig.ts_ls.setup({ capabilities = capabilities, on_attach = on_attach })
+			lspconfig.jsonls.setup({ capabilities = capabilities, on_attach = on_attach })
+			lspconfig.yamlls.setup({ capabilities = capabilities, on_attach = on_attach })
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
+				on_attach = on_attach,
 				cmd = { "gopls" },
 				filetypes = { "go", "gomod", "gowork", "gotmpl" },
 				settings = {
@@ -107,6 +107,25 @@ return {
 						usePlaceholders = true,
 						analyses = {
 							unusedparams = true,
+						},
+					},
+				},
+			})
+
+			-- ✅ Pylsp with black + ruff (no extra ruff LSP)
+			lspconfig.pylsp.setup({
+				capabilities = capabilities,
+				on_attach = on_attach,
+				settings = {
+					pylsp = {
+						plugins = {
+							black = { enabled = true },
+							autopep8 = { enabled = false },
+							yapf = { enabled = false },
+							pylint = { enabled = false },
+							pyflakes = { enabled = false },
+							pycodestyle = { enabled = false },
+							ruff = { enabled = true },
 						},
 					},
 				},
@@ -123,21 +142,19 @@ return {
 			end, {})
 		end,
 	},
+
+	-- null-ls for formatters and non-LSP linters
 	{
 		"nvimtools/none-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			local null_ls = require("null-ls")
-
 			null_ls.setup({
 				sources = {
-					-- Formatters
 					null_ls.builtins.formatting.stylua,
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.shfmt,
 					null_ls.builtins.formatting.gofmt,
-					null_ls.builtins.formatting.black,
-					-- Linters
 					null_ls.builtins.diagnostics.shellcheck,
 					null_ls.builtins.diagnostics.eslint_d,
 					null_ls.builtins.diagnostics.luacheck,
