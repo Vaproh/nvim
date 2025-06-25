@@ -12,23 +12,16 @@ return {
 					"lua_ls",
 					"html",
 					"cssls",
-					"ruff",
 					"pylsp",
 					"gopls",
 					"ts_ls",
 					"jsonls",
 					"yamlls",
-					-- Formatters and linters
+					-- Formatters only (no diagnostics)
 					"stylua",
 					"prettier",
 					"shfmt",
 					"gofmt",
-					"shellcheck",
-					"black",
-					"pylint",
-					"eslint_d",
-					"luacheck",
-					"markdownlint",
 				},
 				automatic_installation = true,
 			})
@@ -46,7 +39,6 @@ return {
 				"lua_ls",
 				"html",
 				"cssls",
-				"ruff",
 				"pylsp",
 				"gopls",
 				"ts_ls",
@@ -65,7 +57,6 @@ return {
 			local lspconfig = require("lspconfig")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-			-- Show diagnostics inline (virtual text)
 			vim.diagnostic.config({
 				virtual_text = true,
 				signs = true,
@@ -74,7 +65,6 @@ return {
 				severity_sort = true,
 			})
 
-			-- Autoformat on save
 			local on_attach = function(client, bufnr)
 				if client.supports_method("textDocument/formatting") then
 					vim.api.nvim_create_autocmd("BufWritePre", {
@@ -87,15 +77,14 @@ return {
 				end
 			end
 
-			-- Core LSPs
 			lspconfig.clangd.setup({ capabilities = capabilities, on_attach = on_attach })
 			lspconfig.bashls.setup({ capabilities = capabilities, on_attach = on_attach })
 			lspconfig.lua_ls.setup({ capabilities = capabilities, on_attach = on_attach })
 			lspconfig.html.setup({ capabilities = capabilities, on_attach = on_attach })
 			lspconfig.cssls.setup({ capabilities = capabilities, on_attach = on_attach })
-			lspconfig.ts_ls.setup({ capabilities = capabilities, on_attach = on_attach })
 			lspconfig.jsonls.setup({ capabilities = capabilities, on_attach = on_attach })
 			lspconfig.yamlls.setup({ capabilities = capabilities, on_attach = on_attach })
+			lspconfig.ts_ls.setup({ capabilities = capabilities, on_attach = on_attach })
 			lspconfig.gopls.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
@@ -112,7 +101,6 @@ return {
 				},
 			})
 
-			-- ✅ Pylsp with black + ruff (no extra ruff LSP)
 			lspconfig.pylsp.setup({
 				capabilities = capabilities,
 				on_attach = on_attach,
@@ -131,7 +119,6 @@ return {
 				},
 			})
 
-			-- Keymaps
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "<leader>gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "<leader>gr", vim.lsp.buf.references, {})
@@ -143,7 +130,7 @@ return {
 		end,
 	},
 
-	-- null-ls for formatters and non-LSP linters
+	-- null-ls for formatters only (no diagnostics)
 	{
 		"nvimtools/none-ls.nvim",
 		event = { "BufReadPre", "BufNewFile" },
@@ -155,10 +142,6 @@ return {
 					null_ls.builtins.formatting.prettier,
 					null_ls.builtins.formatting.shfmt,
 					null_ls.builtins.formatting.gofmt,
-					null_ls.builtins.diagnostics.shellcheck,
-					null_ls.builtins.diagnostics.eslint_d,
-					null_ls.builtins.diagnostics.luacheck,
-					null_ls.builtins.diagnostics.markdownlint,
 				},
 			})
 		end,
